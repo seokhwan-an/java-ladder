@@ -13,13 +13,14 @@ public class InputView {
     private static final String WANTED_RESULT_PLAYER_INPUT = "결과를 보고 싶은 사람은?";
 
     private final Scanner scanner = new Scanner(System.in);
+    private final InputValidator inputValidator = new InputValidator();
 
     public List<String> readPlayerName() {
         printPlayerNameInputGuideMessage();
 
         String playerName = scanner.nextLine();
 
-        InputValidator.validateNullOrBlankInput(playerName);
+        inputValidator.validateNullOrBlankInput(playerName);
         return List.of(playerName.split(DELIMITER));
     }
 
@@ -28,7 +29,7 @@ public class InputView {
 
         String ladderHeight = scanner.nextLine();
 
-        InputValidator.validateLadderHeightInput(ladderHeight);
+        inputValidator.validateLadderHeightInput(ladderHeight);
         return Integer.parseInt(ladderHeight);
     }
 
@@ -37,7 +38,7 @@ public class InputView {
 
         String prizeName = scanner.nextLine();
 
-        InputValidator.validateNullOrBlankInput(prizeName);
+        inputValidator.validateNullOrBlankInput(prizeName);
         return List.of(prizeName.split(DELIMITER));
     }
 
@@ -46,7 +47,7 @@ public class InputView {
 
         String playerName = scanner.nextLine();
 
-        InputValidator.validateNullOrBlankInput(playerName);
+        inputValidator.validateNullOrBlankInput(playerName);
 
         return playerName.trim();
     }

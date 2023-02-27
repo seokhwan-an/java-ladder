@@ -17,39 +17,54 @@ class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     void 플레이어_이름_입력이_빈칸이면_에러를_발생시킨다(String playerNames) {
+        //given
+        InputValidator inputValidator = new InputValidator();
+
         //when + then
-        assertThatThrownBy(() -> InputValidator.validateNullOrBlankInput(playerNames))
+        assertThatThrownBy(() -> inputValidator.validateNullOrBlankInput(playerNames))
             .isInstanceOf(NullOrBlankInputException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"가가가", "abc", "1234"})
     void 플레이어_이름_입력이_빈칸이_아니면_에러를_발생시키지_않는다(String playerNames) {
+        //given
+        InputValidator inputValidator = new InputValidator();
+
         //when + then
-        assertDoesNotThrow(() -> InputValidator.validateNullOrBlankInput(playerNames));
+        assertDoesNotThrow(() -> inputValidator.validateNullOrBlankInput(playerNames));
     }
 
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = {"가", "1나", "abv", "!@", "", " ", "  ", "0", "-1", "10.1"})
     void 사다리_높이_입력이_숫자가_아니거나_양수가_아니면_에러를_발생시킨다(String ladderHeight) {
+        //given
+        InputValidator inputValidator = new InputValidator();
+
         //when + then
-        assertThatThrownBy(() -> InputValidator.validateLadderHeightInput(ladderHeight))
+        assertThatThrownBy(() -> inputValidator.validateLadderHeightInput(ladderHeight))
             .isInstanceOf(InvalidLadderHeightException.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"1", "10", "100"})
     void 사다리_높이_입력이_양의_정수이면_에러를_발생시키지_않는다(String ladderHeight) {
+        //given
+        InputValidator inputValidator = new InputValidator();
+
         //when + then
-        assertDoesNotThrow(() -> InputValidator.validateLadderHeightInput(ladderHeight));
+        assertDoesNotThrow(() -> inputValidator.validateLadderHeightInput(ladderHeight));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"", " ", "  "})
     void 상품의_입력_값이_공백이나_Null이면_에러를_발생시킨다(String prizeName) {
+        //given
+        InputValidator inputValidator = new InputValidator();
+
         //when + then
-        assertThatThrownBy(() -> InputValidator.validateNullOrBlankInput(prizeName))
+        assertThatThrownBy(() -> inputValidator.validateNullOrBlankInput(prizeName))
             .isInstanceOf(NullOrBlankInputException.class);
     }
 }
